@@ -2,9 +2,10 @@
 from flask import Flask, request, render_template
 import pickle
 from sklearn.preprocessing import StandardScaler
-scaler = StandardScaler()
+with open('scaler.pkl', 'rb') as file:
+    scaler = pickle.load(file)
 
-model = pickle.load(open("model_pickle.pkl", 'rb'))
+model = pickle.load(open("model1_pickle.pkl", 'rb'))
 
 app = Flask(__name__)
 # @app.route('/analysis')
@@ -94,10 +95,11 @@ def home():
             smoking_status_never_smoked = 0
             smoking_status_smokes = 0
 
+         
         feature = scaler.fit_transform([[age, hypertension, disease, glucose, bmi, gender_male, gender_other, married_yes, work_type_Never_worked, work_type_Private, work_type_Self_employed, work_type_children, Residence_type_Urban,smoking_status_formerly_smoked, smoking_status_never_smoked, smoking_status_smokes]])
 
         prediction = model.predict(feature)[0]
-        # print(prediction) 
+        print(prediction) 
         # 
         if prediction==0:
             prediction = "NO,Congratulations" 
