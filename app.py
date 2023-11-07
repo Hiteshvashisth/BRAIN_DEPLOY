@@ -14,6 +14,7 @@ app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def home():
     if request.method =="POST":
+        print("Post request come.")
         gender = request.form['gender']
         age = int(request.form['age'])
         hypertension = int(request.form['hypertension'])
@@ -99,7 +100,7 @@ def home():
         # print(prediction) 
         # 
         if prediction==0:
-            prediction = "NO" 
+            prediction = "NO,Congratulations" 
         else:
             prediction = "YES" 
 
@@ -107,6 +108,7 @@ def home():
          
 
     else:
+        print("Get request com.e")
         return render_template("index.html")
 
 
