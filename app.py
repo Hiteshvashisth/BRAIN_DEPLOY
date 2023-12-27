@@ -117,7 +117,7 @@ def home():
 @app.route('/about', methods=['GET', 'POST'])
 def about():
  return render_template("about.html")
-
+#this is for review
 
 if __name__ == "__main__":
     app.run(debug=True)
